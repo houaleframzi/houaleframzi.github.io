@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Ahmed Ramzi Houalef — Academic Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        academic: {
+                            bg: '#fcfcfc',
+                            darkbg: '#121316',
+                            cardDark: '#1c1e22',
+                            text: '#22252a',
+                            muted: '#525866',
+                            darkText: '#e1e4ea',
+                            darkMuted: '#9da4b0',
+                            accent: '#1a5fb4',
+                            accentHover: '#154f96',
+                            border: '#e2e5ec',
+                            darkBorder: '#2e323b',
+                            burgundy: '#801515'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Georgia', 'Cambria', 'Times New Roman', 'Times', 'serif'],
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome for Academic Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @media print {
+            .no-print { display: none !important; }
+            body { background: #ffffff !important; color: #000000 !important; font-size: 11pt; }
+            a { text-decoration: underline; color: #000 !important; }
+            .shadow-sm, .shadow-md { box-shadow: none !important; }
+            .border { border-color: #ccc !important; }
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+        .dark ::-webkit-scrollbar-thumb { background: #334155; }
+    </style>
+</head>
+<body class="bg-academic-bg dark:bg-academic-darkbg text-academic-text dark:text-academic-darkText font-serif transition-colors duration-200 antialiased min-h-screen flex flex-col">
+
+    <header class="sticky top-0 z-50 bg-academic-bg/90 dark:bg-academic-darkbg/90 backdrop-blur-md border-b border-academic-border dark:border-academic-darkBorder no-print">
+        <div class="max-w-5xl mx-auto px-4 py-3 flex justify-between items-center font-sans text-sm">
+            <a href="#about" class="font-semibold tracking-tight text-academic-text dark:text-academic-darkText hover:text-academic-accent dark:hover:text-sky-400">
+                Dr. Ahmed Ramzi Houalef
+            </a>
+            
+            <nav class="hidden sm:flex items-center space-x-6 text-academic-muted dark:text-academic-darkMuted">
+                <a href="#about" class="hover:text-academic-accent dark:hover:text-sky-400 transition-colors">About</a>
+                <a href="#education" class="hover:text-academic-accent dark:hover:text-sky-400 transition-colors">Education</a>
+                <a href="#publications" class="hover:text-academic-accent dark:hover:text-sky-400 transition-colors">Publications</a>
+                <a href="#projects" class="hover:text-academic-accent dark:hover:text-sky-400 transition-colors">Research</a>
+                <a href="#experience" class="hover:text-academic-accent dark:hover:text-sky-400 transition-colors">Experience</a>
+                <a href="#supervision" class="hover:text-academic-accent dark:hover:text-sky-400 transition-colors">Supervision</a>
+                <a href="#contact" class="hover:text-academic-accent dark:hover:text-sky-400 transition-colors">Contact</a>
+            </nav>
+
+            <div class="flex items-center space-x-3">
+                <button id="themeToggleBtn" onclick="toggleDarkMode()" class="p-2 rounded-md hover:bg-black/5 dark:hover:bg-white/10 text-academic-muted dark:text-academic-darkMuted" aria-label="Toggle Theme">
+                    <i id="themeIcon" class="fa-solid fa-moon text-base"></i>
+                </button>
+                <button onclick="window.print()" class="p-2 rounded-md hover:bg-black/5 dark:hover:bg-white/10 text-academic-muted dark:text-academic-darkMuted" title="Print Curriculum Vitae">
+                    <i class="fa-solid fa-print text-base"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-5xl mx-auto px-4 py-8 sm:py-12 flex-grow w-full">
+        
+        <section id="about" class="mb-14 border-b border-academic-border dark:border-academic-darkBorder pb-10">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 items-start">
+                
+                <!-- Sidebar / Photo Column -->
+                <div class="md:col-span-1 flex flex-col items-center md:items-start text-center md:text-left">
+                    <div class="relative group w-36 h-36 rounded-full overflow-hidden border-2 border-academic-border dark:border-academic-darkBorder bg-gray-200 dark:bg-gray-800 mb-4 shadow-sm">
+                        <img id="profileImage" src="https://placehold.co/300x300/1a5fb4/ffffff?text=ARH" alt="Dr. Ahmed Ramzi Houalef" class="w-full h-full object-cover">
+                        
+                        <!-- Photo Upload Overlay / Button (Hidden in print) -->
+                        <label for="photoInput" class="no-print absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center cursor-pointer text-white text-xs text-center p-2">
+                            <i class="fa-solid fa-camera text-base mb-1"></i>
+                            <span>Change Photo</span>
+                        </label>
+                        <input type="file" id="photoInput" accept="image/*" class="hidden" onchange="uploadProfilePhoto(event)">
+                    </div>
+                    <h1 class="text-xl font-bold font-sans tracking-tight text-academic-text dark:text-academic-darkText">
+                        Dr. Ahmed Ramzi Houalef
+                    </h1>
+                    <p class="text-sm font-sans text-academic-muted dark:text-academic-darkMuted mt-1">
+                        PhD in Computer Science
+                    </p>
+                    <p class="text-xs font-sans text-academic-burgundy dark:text-rose-400 mt-1 font-medium">
+                        Teaching Assistant & Researcher
+                    </p>
+                    <p class="text-xs font-sans text-academic-muted dark:text-academic-darkMuted mt-2 leading-relaxed">
+                        <i class="fa-solid fa-building-columns mr-1 text-xs"></i> Université Bourgogne Europe
+                    </p>
+
+                    <!-- Academic Links -->
+                    <div class="flex flex-wrap justify-center md:justify-start gap-2 mt-4 no-print font-sans text-xs">
+                        <a href="https://scholar.google.com/citations?user=q-IeTdAAAAAJ&hl=en" target="_blank" rel="noopener" class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded border border-academic-border dark:border-academic-darkBorder hover:border-academic-accent dark:hover:border-sky-400 transition-colors">
+                            <i class="fa-sharp fa-solid fa-graduation-cap text-academic-accent dark:text-sky-400"></i> Google Scholar
+                        </a>
+                        <a href="https://www.linkedin.com/in/ahmed-ramzi-houalef" target="_blank" rel="noopener" class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded border border-academic-border dark:border-academic-darkBorder hover:border-academic-accent dark:hover:border-sky-400 transition-colors">
+                            <i class="fa-brands fa-linkedin text-blue-600 dark:text-blue-400"></i> LinkedIn
+                        </a>
+                        <a href="https://github.com/houaleframzi" target="_blank" rel="noopener" class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded border border-academic-border dark:border-academic-darkBorder hover:border-academic-accent dark:hover:border-sky-400 transition-colors">
+                            <i class="fa-brands fa-github"></i> GitHub
+                        </a>
+                        <a href="https://www.hackster.io/ramamzi31" target="_blank" rel="noopener" class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded border border-academic-border dark:border-academic-darkBorder hover:border-academic-accent dark:hover:border-sky-400 transition-colors">
+                            <i class="fa-solid fa-microchip text-emerald-600 dark:text-emerald-400"></i> Hackster.io
+                        </a>
+                        <a href="mailto:ahmed-ramzi.houalef@u-bourgogne.fr" class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded border border-academic-border dark:border-academic-darkBorder hover:border-academic-accent dark:hover:border-sky-400 transition-colors">
+                            <i class="fa-regular fa-envelope text-red-500"></i> Email
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Biography Details -->
+                <div class="md:col-span-3 space-y-4">
+                    <h2 class="text-2xl font-bold border-b border-academic-border dark:border-academic-darkBorder pb-2 font-sans tracking-tight">
+                        Biography
+                    </h2>
+                    <p class="leading-relaxed text-base text-academic-text/90 dark:text-academic-darkText/90">
+                        Dr. Ahmed Ramzi Houalef holds a Doctorate in Computer Science from <strong>Université Bourgogne Europe</strong> (DRIVE Laboratory). His doctoral research was conducted within the framework of the European project <a href="https://opeva.eu/" target="_blank" class="text-academic-accent dark:text-sky-400 underline font-semibold">OPEVA</a> (OPtimization of Electric Vehicle Autonomy, Horizon Europe / KDT JU), focusing on data-driven models, reinforcement learning, and distributed AI algorithms applied to modern intelligent transportation systems, connected electric vehicles (EVs), and smart energy grids.
+                    </p>
+
+                    <!-- Key Research Interests -->
+                    <div class="pt-2">
+                        <h3 class="text-sm font-bold font-sans uppercase tracking-wider text-academic-muted dark:text-academic-darkMuted mb-2">
+                            Primary Research & Engineering Domains
+                        </h3>
+                        <div class="flex flex-wrap gap-1.5 font-sans text-xs">
+                            <span class="px-2.5 py-1 rounded bg-gray-100 dark:bg-gray-800 text-academic-text dark:text-academic-darkText border border-academic-border dark:border-academic-darkBorder">AI, ML, Networking, Optimisation</span>
+                            <span class="px-2.5 py-1 rounded bg-gray-100 dark:bg-gray-800 text-academic-text dark:text-academic-darkText border border-academic-border dark:border-academic-darkBorder">Computer Networks & Telecom</span>
+                            <span class="px-2.5 py-1 rounded bg-gray-100 dark:bg-gray-800 text-academic-text dark:text-academic-darkText border border-academic-border dark:border-academic-darkBorder">Reinforcement Learning (DQN / DDQN)</span>
+                            <span class="px-2.5 py-1 rounded bg-gray-100 dark:bg-gray-800 text-academic-text dark:text-academic-darkText border border-academic-border dark:border-academic-darkBorder">EV Itinerary & Energy Optimization</span>
+                            <span class="px-2.5 py-1 rounded bg-gray-100 dark:bg-gray-800 text-academic-text dark:text-academic-darkText border border-academic-border dark:border-academic-darkBorder">Embedded IoT & Assistive Hardware</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="mb-14">
+            <h2 class="text-2xl font-bold font-sans tracking-tight border-b border-academic-border dark:border-academic-darkBorder pb-3 mb-6">
+                Education
+            </h2>
+
+            <div class="space-y-6">
+
+                <!-- Doctorate -->
+                <div class="border-l-2 border-academic-accent dark:border-sky-500 pl-4 py-1">
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline">
+                        <h3 class="font-sans font-bold text-base text-academic-text dark:text-academic-darkText">
+                            Ph.D. in Computer Science
+                        </h3>
+                        <span class="text-xs font-sans font-semibold text-academic-accent dark:text-sky-400 mt-0.5 sm:mt-0">
+                            Université Bourgogne Europe — France
+                        </span>
+                    </div>
+                    <p class="text-xs font-sans text-academic-muted dark:text-academic-darkMuted mt-0.5">
+                        DRIVE Laboratory | European Project OPEVA (<a href="https://opeva.eu/" target="_blank" class="hover:underline">opeva.eu</a>)
+                    </p>
+                    <p class="text-sm text-academic-text/90 dark:text-academic-darkText/90 mt-1.5 leading-relaxed">
+                        <span class="font-semibold font-sans text-xs uppercase tracking-wider text-academic-muted dark:text-academic-darkMuted">Thesis Title:</span> Artificial intelligence for the optimization of electric vehicles autonomy and their integration into the smart grid.
+                    </p>
+                </div>
+
+                <!-- Master's Degree -->
+                <div class="border-l-2 border-academic-border dark:border-academic-darkBorder pl-4 py-1">
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline">
+                        <h3 class="font-sans font-bold text-base text-academic-text dark:text-academic-darkText">
+                            Master of Science (M.Sc.) in Computer System Networks and Communication Engineering
+                        </h3>
+                        <span class="text-xs font-sans text-academic-muted dark:text-academic-darkMuted mt-0.5 sm:mt-0">
+                            University of Science and Technology of Oran Mohamed Boudiaf (USTO-MB) — Algeria
+                        </span>
+                    </div>
+                    <p class="text-xs font-sans text-academic-muted dark:text-academic-darkMuted mt-0.5">
+                        Faculty of Electrical Engineering (Department of Electronics)
+                    </p>
+                    <p class="text-sm text-academic-text/90 dark:text-academic-darkText/90 mt-1.5 leading-relaxed">
+                        <span class="font-semibold font-sans text-xs uppercase tracking-wider text-academic-muted dark:text-academic-darkMuted">Specialization:</span> Telecommunications engineering, computer system networks, and communication protocols within the Department of Electronics.
+                    </p>
+                </div>
+
+                <!-- Bachelor's Degree -->
+                <div class="border-l-2 border-academic-border dark:border-academic-darkBorder pl-4 py-1">
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline">
+                        <h3 class="font-sans font-bold text-base text-academic-text dark:text-academic-darkText">
+                            Bachelor of Science (B.Sc.) in Telecommunications & Electronics
+                        </h3>
+                        <span class="text-xs font-sans text-academic-muted dark:text-academic-darkMuted mt-0.5 sm:mt-0">
+                            University of Science and Technology of Oran Mohamed Boudiaf (USTO-MB) — Algeria
+                        </span>
+                    </div>
+                    <p class="text-xs font-sans text-academic-muted dark:text-academic-darkMuted mt-0.5">
+                        Faculty of Electrical Engineering (Department of Electronics)
+                    </p>
+                    <p class="text-sm text-academic-text/90 dark:text-academic-darkText/90 mt-1.5 leading-relaxed">
+                        <span class="font-semibold font-sans text-xs uppercase tracking-wider text-academic-muted dark:text-academic-darkMuted">Foundational Studies:</span> Telecommunications engineering, digital communications, signal processing, and electronics.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="publications" class="mb-14">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 border-b border-academic-border dark:border-academic-darkBorder pb-3 gap-4">
+                <h2 class="text-2xl font-bold font-sans tracking-tight">
+                    Publications (Google Scholar)
+                </h2>
+
+                <div class="flex flex-wrap items-center gap-2 font-sans text-xs w-full sm:w-auto no-print">
+                    <div class="inline-flex rounded-md shadow-sm border border-academic-border dark:border-academic-darkBorder p-0.5 bg-gray-50 dark:bg-gray-800">
+                        <button onclick="filterPubs('all')" id="filter-all" class="pub-filter-btn px-3 py-1 rounded font-medium bg-white dark:bg-gray-700 shadow-sm text-academic-accent dark:text-sky-400">
+                            All
+                        </button>
+                        <button onclick="filterPubs('journal')" id="filter-journal" class="pub-filter-btn px-3 py-1 rounded font-medium text-academic-muted dark:text-academic-darkMuted hover:text-academic-text">
+                            Journals
+                        </button>
+                        <button onclick="filterPubs('conference')" id="filter-conference" class="pub-filter-btn px-3 py-1 rounded font-medium text-academic-muted dark:text-academic-darkMuted hover:text-academic-text">
+                            Conferences
+                        </button>
+                    </div>
+
+                    <div class="relative flex-grow sm:flex-grow-0">
+                        <input type="text" id="pubSearch" oninput="searchPubs()" placeholder="Search title or co-author..." class="w-full sm:w-48 pl-7 pr-3 py-1 rounded border border-academic-border dark:border-academic-darkBorder bg-white dark:bg-academic-cardDark text-xs focus:outline-none focus:ring-1 focus:ring-academic-accent">
+                        <i class="fa-solid fa-magnifying-glass absolute left-2.5 top-2 text-gray-400 text-xs"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div id="publicationsContainer" class="space-y-6">
+
+                <!-- Scholar Item 1 -->
+                <article class="pub-item journal border-l-2 border-academic-accent dark:border-sky-500 pl-4 py-1" data-title="chargetrek gamified visual learning framework ev charging v2g systems" data-author="j.e. mendoza f. delavernhe s.m. senouci">
+                    <div class="flex items-baseline justify-between">
+                        <span class="inline-block px-2 py-0.5 text-[10px] uppercase tracking-wide font-sans font-semibold rounded bg-blue-50 dark:bg-blue-900/40 text-academic-accent dark:text-sky-300 border border-blue-200 dark:border-blue-800">
+                            Applied Energy 414, 127853 (2026)
+                        </span>
+                        <span class="font-sans text-xs text-academic-muted dark:text-academic-darkMuted">Journal Article</span>
+                    </div>
+                    <h3 class="text-base font-bold text-academic-text dark:text-academic-darkText mt-1.5 leading-snug">
+                        ChargeTrek: A gamified visual learning framework for EV charging in V2G systems
+                    </h3>
+                    <p class="text-sm text-academic-muted dark:text-academic-darkMuted font-sans mt-1">
+                        <strong class="text-academic-text dark:text-academic-darkText">AR Houalef</strong>, JE Mendoza, F Delavernhe, SM Senouci
+                    </p>
+                    <div class="mt-2 text-xs font-sans flex items-center gap-3 no-print">
+                        <button onclick="toggleBibtex('bib-chargetrek')" class="text-academic-accent dark:text-sky-400 hover:underline flex items-center gap-1">
+                            <i class="fa-solid fa-quote-right text-[10px]"></i> BibTeX
+                        </button>
+                    </div>
+                    <pre id="bib-chargetrek" class="hidden mt-2 p-3 rounded bg-gray-100 dark:bg-gray-800 text-[11px] font-mono overflow-x-auto text-gray-800 dark:text-gray-200 border border-academic-border dark:border-academic-darkBorder no-print">@article{houalef2026chargetrek,
+  title={ChargeTrek: A gamified visual learning framework for EV charging in V2G systems},
+  author={Houalef, Ahmed Ramzi and Mendoza, J.E. and Delavernhe, F. and Senouci, S.M.},
+  journal={Applied Energy},
+  volume={414},
+  pages={127853},
+  year={2026},
+  publisher={Elsevier}
+}</pre>
+                </article>
+
+                <!-- Scholar Item 2 -->
+                <article class="pub-item journal border-l-2 border-academic-accent dark:border-sky-500 pl-4 py-1" data-title="data driven personalized route planning connected electric vehicles optimizing time energy charging stops" data-author="f. delavernhe s.m. senouci e.h. aglzim">
+                    <div class="flex items-baseline justify-between">
+                        <span class="inline-block px-2 py-0.5 text-[10px] uppercase tracking-wide font-sans font-semibold rounded bg-blue-50 dark:bg-blue-900/40 text-academic-accent dark:text-sky-300 border border-blue-200 dark:border-blue-800">
+                            Applied Energy 402, 126887 (2025)
+                        </span>
+                        <span class="font-sans text-xs text-academic-muted dark:text-academic-darkMuted">Journal Article</span>
+                    </div>
+                    <h3 class="text-base font-bold text-academic-text dark:text-academic-darkText mt-1.5 leading-snug">
+                        Data-driven, personalized route planning for connected electric vehicles: Optimizing time, energy, and charging stops
+                    </h3>
+                    <p class="text-sm text-academic-muted dark:text-academic-darkMuted font-sans mt-1">
+                        <strong class="text-academic-text dark:text-academic-darkText">AR Houalef</strong>, F Delavernhe, SM Senouci, EH Aglzim
+                    </p>
+                    <div class="mt-2 text-xs font-sans flex items-center gap-3 no-print">
+                        <button onclick="toggleBibtex('bib-datadriven')" class="text-academic-accent dark:text-sky-400 hover:underline flex items-center gap-1">
+                            <i class="fa-solid fa-quote-right text-[10px]"></i> BibTeX
+                        </button>
+                    </div>
+                    <pre id="bib-datadriven" class="hidden mt-2 p-3 rounded bg-gray-100 dark:bg-gray-800 text-[11px] font-mono overflow-x-auto text-gray-800 dark:text-gray-200 border border-academic-border dark:border-academic-darkBorder no-print">@article{houalef2025datadriven,
+  title={Data-driven, personalized route planning for connected electric vehicles: Optimizing time, energy, and charging stops},
+  author={Houalef, Ahmed Ramzi and Delavernhe, F. and Senouci, S.M. and Aglzim, E.H.},
+  journal={Applied Energy},
+  volume={402},
+  pages={126887},
+  year={2025},
+  publisher={Elsevier}
+}</pre>
+                </article>
+
+                <!-- Scholar Item 3 -->
+                <article class="pub-item journal border-l-2 border-academic-accent dark:border-sky-500 pl-4 py-1" data-title="optimising power management wireless sensor networks machine learning experimental study energy efficiency" data-author="m.a. zafrane m. benchehima">
+                    <div class="flex items-baseline justify-between">
+                        <span class="inline-block px-2 py-0.5 text-[10px] uppercase tracking-wide font-sans font-semibold rounded bg-blue-50 dark:bg-blue-900/40 text-academic-accent dark:text-sky-300 border border-blue-200 dark:border-blue-800">
+                            Int. J. Sensor Networks 47 (3), 127-147 (2025)
+                        </span>
+                        <span class="font-sans text-xs text-academic-muted dark:text-academic-darkMuted">Journal Article</span>
+                    </div>
+                    <h3 class="text-base font-bold text-academic-text dark:text-academic-darkText mt-1.5 leading-snug">
+                        Optimising power management in wireless sensor networks using machine learning: an experimental study on energy efficiency
+                    </h3>
+                    <p class="text-sm text-academic-muted dark:text-academic-darkMuted font-sans mt-1">
+                        MA Zafrane, <strong class="text-academic-text dark:text-academic-darkText">AR Houalef</strong>, M Benchehima
+                    </p>
+                    <div class="mt-2 text-xs font-sans flex items-center gap-3 no-print">
+                        <button onclick="toggleBibtex('bib-wsn')" class="text-academic-accent dark:text-sky-400 hover:underline flex items-center gap-1">
+                            <i class="fa-solid fa-quote-right text-[10px]"></i> BibTeX
+                        </button>
+                    </div>
+                    <pre id="bib-wsn" class="hidden mt-2 p-3 rounded bg-gray-100 dark:bg-gray-800 text-[11px] font-mono overflow-x-auto text-gray-800 dark:text-gray-200 border border-academic-border dark:border-academic-darkBorder no-print">@article{zafrane2025optimising,
+  title={Optimising power management in wireless sensor networks using machine learning: an experimental study on energy efficiency},
+  author={Zafrane, Mohamed Amine and Houalef, Ahmed Ramzi and Benchehima, Miloud},
+  journal={International Journal of Sensor Networks},
+  volume={47},
+  number={3},
+  pages={127--147},
+  year={2025}
+}</pre>
+                </article>
+
+                <!-- Scholar Item 4 -->
+                <article class="pub-item conference border-l-2 border-academic-burgundy dark:border-rose-400 pl-4 py-1" data-title="optimal control electric vehicles dynamic wireless charging lanes deep q networks" data-author="f. delavernhe s.m. senouci e.h. aglzim vtc fall ieee chengdu china">
+                    <div class="flex items-baseline justify-between">
+                        <span class="inline-block px-2 py-0.5 text-[10px] uppercase tracking-wide font-sans font-semibold rounded bg-amber-50 dark:bg-amber-900/40 text-academic-burgundy dark:text-rose-300 border border-amber-200 dark:border-amber-800">
+                            IEEE VTC2025-Fall (Chengdu, China)
+                        </span>
+                        <span class="font-sans text-xs text-academic-muted dark:text-academic-darkMuted">Conference Paper</span>
+                    </div>
+                    <h3 class="text-base font-bold text-academic-text dark:text-academic-darkText mt-1.5 leading-snug">
+                        Optimal Control of Electric Vehicles in Dynamic Wireless Charging Lanes Using Deep Q-Networks
+                    </h3>
+                    <p class="text-sm text-academic-muted dark:text-academic-darkMuted font-sans mt-1">
+                        <strong class="text-academic-text dark:text-academic-darkText">AR Houalef</strong>, F Delavernhe, SM Senouci, EH Aglzim
+                    </p>
+                    <p class="text-xs font-sans text-academic-muted dark:text-academic-darkMuted mt-0.5">
+                        2025 IEEE 102nd Vehicular Technology Conference (VTC2025-Fall), Chengdu, China, pp. 1-5
+                    </p>
+                    <div class="mt-2 text-xs font-sans flex items-center gap-3 no-print">
+                        <button onclick="toggleBibtex('bib-dqn')" class="text-academic-accent dark:text-sky-400 hover:underline flex items-center gap-1">
+                            <i class="fa-solid fa-quote-right text-[10px]"></i> BibTeX
+                        </button>
+                    </div>
+                    <pre id="bib-dqn" class="hidden mt-2 p-3 rounded bg-gray-100 dark:bg-gray-800 text-[11px] font-mono overflow-x-auto text-gray-800 dark:text-gray-200 border border-academic-border dark:border-academic-darkBorder no-print">@inproceedings{houalef2025optimal,
+  title={Optimal Control of Electric Vehicles in Dynamic Wireless Charging Lanes Using Deep Q-Networks},
+  author={Houalef, Ahmed Ramzi and Delavernhe, F. and Senouci, S.M. and Aglzim, E.H.},
+  booktitle={2025 IEEE 102nd Vehicular Technology Conference (VTC2025-Fall)},
+  address={Chengdu, China},
+  pages={1--5},
+  year={2025},
+  organization={IEEE}
+}</pre>
+                </article>
+
+                <!-- Scholar Item 5 -->
+                <article class="pub-item conference border-l-2 border-academic-burgundy dark:border-rose-400 pl-4 py-1" data-title="matchestimate robust aggregation method federated learning electric vehicles case study" data-author="m.r. mahamdi l. douaidi f. delavernhe s.m. senouci vtc fall ieee chengdu china">
+                    <div class="flex items-baseline justify-between">
+                        <span class="inline-block px-2 py-0.5 text-[10px] uppercase tracking-wide font-sans font-semibold rounded bg-amber-50 dark:bg-amber-900/40 text-academic-burgundy dark:text-rose-300 border border-amber-200 dark:border-amber-800">
+                            IEEE VTC2025-Fall (Chengdu, China)
+                        </span>
+                        <span class="font-sans text-xs text-academic-muted dark:text-academic-darkMuted">Conference Paper</span>
+                    </div>
+                    <h3 class="text-base font-bold text-academic-text dark:text-academic-darkText mt-1.5 leading-snug">
+                        MatchEstimate: A Robust Aggregation Method for Federated Learning, Electric Vehicles Case Study
+                    </h3>
+                    <p class="text-sm text-academic-muted dark:text-academic-darkMuted font-sans mt-1">
+                        MR Mahamdi, <strong class="text-academic-text dark:text-academic-darkText">AR Houalef</strong>, L Douaidi, F Delavernhe, SM Senouci
+                    </p>
+                    <p class="text-xs font-sans text-academic-muted dark:text-academic-darkMuted mt-0.5">
+                        2025 IEEE 102nd Vehicular Technology Conference (VTC2025-Fall), Chengdu, China, pp. 1-6
+                    </p>
+                    <div class="mt-2 text-xs font-sans flex items-center gap-3 no-print">
+                        <button onclick="toggleBibtex('bib-match')" class="text-academic-accent dark:text-sky-400 hover:underline flex items-center gap-1">
+                            <i class="fa-solid fa-quote-right text-[10px]"></i> BibTeX
+                        </button>
+                    </div>
+                    <pre id="bib-match" class="hidden mt-2 p-3 rounded bg-gray-100 dark:bg-gray-800 text-[11px] font-mono overflow-x-auto text-gray-800 dark:text-gray-200 border border-academic-border dark:border-academic-darkBorder no-print">@inproceedings{mahamdi2025matchestimate,
+  title={MatchEstimate: A Robust Aggregation Method for Federated Learning, Electric Vehicles Case Study},
+  author={Mahamdi, Mohamed Redha and Houalef, Ahmed Ramzi and Douaidi, Lydia and Delavernhe, Florian and Senouci, Sidi Mohammed},
+  booktitle={2025 IEEE 102nd Vehicular Technology Conference (VTC2025-Fall)},
+  address={Chengdu, China},
+  pages={1--6},
+  year={2025},
+  organization={IEEE}
+}</pre>
+                </article>
+
+                <!-- Scholar Item 6 -->
+                <article class="pub-item conference border-l-2 border-academic-burgundy dark:border-rose-400 pl-4 py-1" data-title="utilizing data driven techniques improve predictive modeling connected electric vehicle energy consumption" data-author="f. delavernhe s.m. senouci e.h. aglzim vtc fall ieee 2024 washington dc usa">
+                    <div class="flex items-baseline justify-between">
+                        <span class="inline-block px-2 py-0.5 text-[10px] uppercase tracking-wide font-sans font-semibold rounded bg-amber-50 dark:bg-amber-900/40 text-academic-burgundy dark:text-rose-300 border border-amber-200 dark:border-amber-800">
+                            IEEE VTC2024-Fall (Washington, D.C., USA)
+                        </span>
+                        <span class="font-sans text-xs text-academic-muted dark:text-academic-darkMuted">Conference Paper</span>
+                    </div>
+                    <h3 class="text-base font-bold text-academic-text dark:text-academic-darkText mt-1.5 leading-snug">
+                        Utilizing data-driven techniques to improve predictive modeling of connected electric vehicle energy consumption
+                    </h3>
+                    <p class="text-sm text-academic-muted dark:text-academic-darkMuted font-sans mt-1">
+                        <strong class="text-academic-text dark:text-academic-darkText">AR Houalef</strong>, F Delavernhe, SM Senouci, EH Aglzim
+                    </p>
+                    <p class="text-xs font-sans text-academic-muted dark:text-academic-darkMuted mt-0.5">
+                        2024 IEEE 100th Vehicular Technology Conference (VTC2024-Fall), Washington, D.C., USA, pp. 1-6
+                    </p>
+                    <div class="mt-2 text-xs font-sans flex items-center gap-3 no-print">
+                        <button onclick="toggleBibtex('bib-vtc24')" class="text-academic-accent dark:text-sky-400 hover:underline flex items-center gap-1">
+                            <i class="fa-solid fa-quote-right text-[10px]"></i> BibTeX
+                        </button>
+                    </div>
+                    <pre id="bib-vtc24" class="hidden mt-2 p-3 rounded bg-gray-100 dark:bg-gray-800 text-[11px] font-mono overflow-x-auto text-gray-800 dark:text-gray-200 border border-academic-border dark:border-academic-darkBorder no-print">@inproceedings{houalef2024utilizing,
+  title={Utilizing data-driven techniques to improve predictive modeling of connected electric vehicle energy consumption},
+  author={Houalef, Ahmed Ramzi and Delavernhe, F. and Senouci, S.M. and Aglzim, E.H.},
+  booktitle={2024 IEEE 100th Vehicular Technology Conference (VTC2024-Fall)},
+  address={Washington, D.C., USA},
+  pages={1--6},
+  year={2024},
+  organization={IEEE}
+}</pre>
+                </article>
+
+            </div>
+        </section>
+
+        <section id="projects" class="mb-14">
+            <h2 class="text-2xl font-bold font-sans tracking-tight border-b border-academic-border dark:border-academic-darkBorder pb-3 mb-6">
+                Open-Source Repositories & Hardware Engineering
+            </h2>
+
+            <!-- GitHub Code Repositories -->
+            <div class="mb-8">
+                <h3 class="text-sm font-bold font-sans uppercase tracking-wider text-academic-muted dark:text-academic-darkMuted mb-4 flex items-center gap-2">
+                    <i class="fa-brands fa-github text-base"></i> GitHub Repositories (@houaleframzi)
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 font-sans">
+                    
+                    <a href="https://github.com/houaleframzi/ChargeTrek" target="_blank" class="p-4 rounded-lg border border-academic-border dark:border-academic-darkBorder bg-white dark:bg-academic-cardDark hover:border-academic-accent dark:hover:border-sky-400 transition-colors block group">
+                        <div class="flex justify-between items-start">
+                            <span class="font-bold text-sm text-academic-accent dark:text-sky-400 group-hover:underline">ChargeTrek</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-blue-100 dark:bg-blue-900/60 text-blue-800 dark:text-blue-200">Python</span>
+                        </div>
+                        <p class="text-xs text-academic-muted dark:text-academic-darkMuted mt-2 leading-relaxed">
+                            Visual RL framework turning EV charging into an Atari-style learning game. Agents learn optimal charge/discharge strategies directly from pixel-based state encodings.
+                        </p>
+                    </a>
+
+                    <a href="https://github.com/houaleframzi/DWCL-RL-CARLA" target="_blank" class="p-4 rounded-lg border border-academic-border dark:border-academic-darkBorder bg-white dark:bg-academic-cardDark hover:border-academic-accent dark:hover:border-sky-400 transition-colors block group">
+                        <div class="flex justify-between items-start">
+                            <span class="font-bold text-sm text-academic-accent dark:text-sky-400 group-hover:underline">DWCL-RL-CARLA</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-blue-100 dark:bg-blue-900/60 text-blue-800 dark:text-blue-200">Python / CARLA</span>
+                        </div>
+                        <p class="text-xs text-academic-muted dark:text-academic-darkMuted mt-2 leading-relaxed">
+                            A deep reinforcement learning environment in CARLA simulator optimizing Dynamic Wireless Charging Lane (DWCL) usage with DQN, realistic vehicle maneuvers, and battery models.
+                        </p>
+                    </a>
+
+                    <a href="https://github.com/houaleframzi/6g-handover-ddqn" target="_blank" class="p-4 rounded-lg border border-academic-border dark:border-academic-darkBorder bg-white dark:bg-academic-cardDark hover:border-academic-accent dark:hover:border-sky-400 transition-colors block group">
+                        <div class="flex justify-between items-start">
+                            <span class="font-bold text-sm text-academic-accent dark:text-sky-400 group-hover:underline">6G Handover DDQN</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-blue-100 dark:bg-blue-900/60 text-blue-800 dark:text-blue-200">Python</span>
+                        </div>
+                        <p class="text-xs text-academic-muted dark:text-academic-darkMuted mt-2 leading-relaxed">
+                            Double Deep Q-Network implementation for optimizing seamless handover decisions in high-speed 6G vehicular communication environments.
+                        </p>
+                    </a>
+
+                    <a href="https://github.com/houaleframzi/rut_port_scanner" target="_blank" class="p-4 rounded-lg border border-academic-border dark:border-academic-darkBorder bg-white dark:bg-academic-cardDark hover:border-academic-accent dark:hover:border-sky-400 transition-colors block group">
+                        <div class="flex justify-between items-start">
+                            <span class="font-bold text-sm text-academic-accent dark:text-sky-400 group-hover:underline">RUT Port Scanner</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300">Shell</span>
+                        </div>
+                        <p class="text-xs text-academic-muted dark:text-academic-darkMuted mt-2 leading-relaxed">
+                            Custom port scanner built for Teltonika RUT950 dual-SIM 4G industrial Wi-Fi router embedded network monitoring.
+                        </p>
+                    </a>
+
+                </div>
+            </div>
+
+            <!-- Hackster.io Projects -->
+            <div>
+                <h3 class="text-sm font-bold font-sans uppercase tracking-wider text-academic-muted dark:text-academic-darkMuted mb-4 flex items-center gap-2">
+                    <i class="fa-solid fa-microchip text-base text-emerald-600 dark:text-emerald-400"></i> Hardware & IoT Engineering Projects (Hackster.io @ramamzi31)
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 font-sans">
+
+                    <a href="https://www.hackster.io/ramamzi31/talking-gloves-for-deaf-people-5beef3" target="_blank" class="p-4 rounded-lg border border-academic-border dark:border-academic-darkBorder bg-white dark:bg-academic-cardDark hover:border-emerald-500 transition-colors block group">
+                        <span class="font-bold text-sm text-academic-text dark:text-academic-darkText group-hover:text-emerald-600 dark:group-hover:text-emerald-400">Talking Gloves for Deaf People</span>
+                        <p class="text-xs text-academic-muted dark:text-academic-darkMuted mt-2 leading-relaxed">
+                            Sign language translation wearable glove using gyroscopes, accelerometers, flex sensors, and microcontroller classification.
+                        </p>
+                    </a>
+
+                    <a href="https://www.hackster.io/ramamzi31/wearable-device-to-translate-sign-language-to-txt-speech-65bb3d" target="_blank" class="p-4 rounded-lg border border-academic-border dark:border-academic-darkBorder bg-white dark:bg-academic-cardDark hover:border-emerald-500 transition-colors block group">
+                        <span class="font-bold text-sm text-academic-text dark:text-academic-darkText group-hover:text-emerald-600 dark:group-hover:text-emerald-400">Wearable Sign-to-Text / Speech</span>
+                        <p class="text-xs text-academic-muted dark:text-academic-darkMuted mt-2 leading-relaxed">
+                            Arduino Nano and HC-05 Bluetooth wearable system with MPU-6050 paired with a custom Android app for real-time speech synthesis.
+                        </p>
+                    </a>
+
+                    <a href="https://www.hackster.io/ramamzi31/wireless-laser-data-transmission-lifi-100b-second-b59303" target="_blank" class="p-4 rounded-lg border border-academic-border dark:border-academic-darkBorder bg-white dark:bg-academic-cardDark hover:border-emerald-500 transition-colors block group">
+                        <span class="font-bold text-sm text-academic-text dark:text-academic-darkText group-hover:text-emerald-600 dark:group-hover:text-emerald-400">Wireless Laser Data Transmission (LiFi)</span>
+                        <p class="text-xs text-academic-muted dark:text-academic-darkMuted mt-2 leading-relaxed">
+                            LiFi laser communication system transferring optical binary text key codes between Arduinos via solar cell detection at 100 baud.
+                        </p>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="mb-14">
+            <h2 class="text-2xl font-bold font-sans tracking-tight border-b border-academic-border dark:border-academic-darkBorder pb-3 mb-6">
+                Academic Background & European Projects
+            </h2>
+
+            <div class="space-y-6">
+                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline">
+                    <div>
+                        <h3 class="font-sans font-bold text-base text-academic-text dark:text-academic-darkText">
+                            Teaching Assistant & PhD Researcher (OPEVA Project)
+                        </h3>
+                        <p class="text-sm text-academic-muted dark:text-academic-darkMuted font-sans">
+                            Université Bourgogne Europe (ISAT / DRIVE Lab) — France
+                        </p>
+                    </div>
+                    <span class="text-xs font-sans text-academic-muted dark:text-academic-darkMuted mt-1 sm:mt-0">
+                        France
+                    </span>
+                </div>
+                <p class="text-sm leading-relaxed text-academic-text/90 dark:text-academic-darkText/90 -mt-3">
+                    Instructed computer science modules at ISAT (Institut Supérieur de l'Automobile et des Transports) and conducted doctoral research within the European Union's Horizon Europe / KDT JU project <a href="https://opeva.eu/" target="_blank" class="text-academic-accent dark:text-sky-400 underline font-semibold">OPEVA</a> (OPtimization of Electric Vehicle Autonomy, Grant Agreement 101097267). OPEVA brings together numerous academic and industrial partners across Europe to advance connected electric vehicle autonomy and smart grid integration. Actively managed project deliverables including <strong>KT2.2</strong> and <strong>Demo 4</strong>.
+                </p>
+            </div>
+        </section>
+
+        <section id="supervision" class="mb-14">
+            <h2 class="text-2xl font-bold font-sans tracking-tight border-b border-academic-border dark:border-academic-darkBorder pb-3 mb-6">
+                Master Thesis Supervision
+            </h2>
+
+            <p class="text-sm text-academic-text/90 dark:text-academic-darkText/90 mb-6 leading-relaxed">
+                Co-supervised graduate students on advanced research topics in intelligent transportation systems, wireless networks, and machine learning, resulting in co-authored publications in reputable international journals and conferences.
+            </p>
+
+            <div class="space-y-6">
+                <!-- Supervised Student 1 -->
+                <div class="border-l-2 border-academic-accent dark:border-sky-500 pl-4 py-1">
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline">
+                        <h3 class="font-sans font-bold text-base text-academic-text dark:text-academic-darkText">
+                            Akram Houalef
+                        </h3>
+                        <span class="text-xs font-sans font-semibold text-academic-accent dark:text-sky-400 mt-0.5 sm:mt-0">
+                            USTO-MB (Algeria) — Academic Year 2025/2026
+                        </span>
+                    </div>
+                    <p class="text-xs font-sans text-academic-muted dark:text-academic-darkMuted mt-0.5">
+                        Master Research Co-Supervision
+                    </p>
+                    <p class="text-sm text-academic-text/90 dark:text-academic-darkText/90 mt-1.5 leading-relaxed">
+                        <span class="font-semibold font-sans text-xs uppercase tracking-wider text-academic-muted dark:text-academic-darkMuted">Outcome:</span> Co-authored research publication (<cite>Reinforcement Learning Driven Handover Optimization for Connected Autonomous Vehicles in 6G Networks</cite>, accepted for IEEE GLOBECOM 2026 in Macau, China) developed during graduate thesis co-supervision.
+                    </p>
+                </div>
+
+                <!-- Supervised Student 2 -->
+                <div class="border-l-2 border-academic-accent dark:border-sky-500 pl-4 py-1">
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline">
+                        <h3 class="font-sans font-bold text-base text-academic-text dark:text-academic-darkText">
+                            Mohamed Redha Mahamdi
+                        </h3>
+                        <span class="text-xs font-sans font-semibold text-academic-accent dark:text-sky-400 mt-0.5 sm:mt-0">
+                            Université Paris Cité (France) — Academic Year 2024/2025
+                        </span>
+                    </div>
+                    <p class="text-xs font-sans text-academic-muted dark:text-academic-darkMuted mt-0.5">
+                        Master Research Co-Supervision
+                    </p>
+                    <p class="text-sm text-academic-text/90 dark:text-academic-darkText/90 mt-1.5 leading-relaxed">
+                        <span class="font-semibold font-sans text-xs uppercase tracking-wider text-academic-muted dark:text-academic-darkMuted">Outcome:</span> Co-authored peer-reviewed conference paper (<cite>MatchEstimate: A Robust Aggregation Method for Federated Learning, Electric Vehicles Case Study</cite>, IEEE VTC2025-Fall) published during co-supervision.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="mb-10">
+            <h2 class="text-2xl font-bold font-sans tracking-tight border-b border-academic-border dark:border-academic-darkBorder pb-3 mb-6">
+                Academic Contact
+            </h2>
+
+            <div class="p-6 rounded-lg bg-gray-50 dark:bg-academic-cardDark border border-academic-border dark:border-academic-darkBorder font-sans text-sm space-y-3">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-envelope text-academic-accent dark:text-sky-400 w-5"></i>
+                    <span><strong>Email:</strong> ahmed-ramzi.houalef [at] u-bourgogne.fr</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-graduation-cap text-academic-accent dark:text-sky-400 w-5"></i>
+                    <span><strong>Google Scholar:</strong> <a href="https://scholar.google.com/citations?user=q-IeTdAAAAAJ&hl=en" target="_blank" class="text-academic-accent dark:text-sky-400 hover:underline">Dr. Ahmed Ramzi Houalef Profile</a></span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <i class="fa-brands fa-linkedin text-academic-accent dark:text-sky-400 w-5"></i>
+                    <span><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/ahmed-ramzi-houalef" target="_blank" class="text-academic-accent dark:text-sky-400 hover:underline">LinkedIn Profile</a></span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="border-t border-academic-border dark:border-academic-darkBorder py-6 font-sans text-xs text-center text-academic-muted dark:text-academic-darkMuted no-print">
+        <div class="max-w-5xl mx-auto px-4">
+            <p>© <span id="year"></span> AR Houalef</p>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT -->
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Photo Upload / Local Preview Logic
+        function uploadProfilePhoto(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const profileImg = document.getElementById('profileImage');
+                    if (profileImg) {
+                        profileImg.src = e.target.result;
+                        // Persist in localStorage if smaller than ~2MB
+                        try {
+                            localStorage.setItem('userProfilePhoto', e.target.result);
+                        } catch(err) {
+                            console.log('Image too large to save in localStorage');
+                        }
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Load saved photo if present
+        const savedPhoto = localStorage.getItem('userProfilePhoto');
+        if (savedPhoto) {
+            const profileImg = document.getElementById('profileImage');
+            if (profileImg) {
+                profileImg.src = savedPhoto;
+            }
+        }
+
+        // Dark Mode Toggle Logic
+        function toggleDarkMode() {
+            const htmlEl = document.documentElement;
+            if (htmlEl.classList.contains('dark')) {
+                htmlEl.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                document.getElementById('themeIcon').className = 'fa-solid fa-moon text-base';
+            } else {
+                htmlEl.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                document.getElementById('themeIcon').className = 'fa-solid fa-sun text-base';
+            }
+        }
+
+        // Initialize Theme from LocalStorage or System Preference
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            const themeIcon = document.getElementById('themeIcon');
+            if (themeIcon) themeIcon.className = 'fa-solid fa-sun text-base';
+        } else {
+            document.documentElement.classList.remove('dark');
+            const themeIcon = document.getElementById('themeIcon');
+            if (themeIcon) themeIcon.className = 'fa-solid fa-moon text-base';
+        }
+
+        // Toggle BibTeX Code Blocks
+        function toggleBibtex(id) {
+            const bibBlock = document.getElementById(id);
+            if (bibBlock) {
+                bibBlock.classList.toggle('hidden');
+            }
+        }
+
+        // Filter Publications
+        function filterPubs(type) {
+            const items = document.querySelectorAll('.pub-item');
+            const buttons = document.querySelectorAll('.pub-filter-btn');
+
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-white', 'dark:bg-gray-700', 'shadow-sm', 'text-academic-accent', 'dark:text-sky-400');
+                btn.classList.add('text-academic-muted', 'dark:text-academic-darkMuted');
+            });
+
+            const activeBtn = document.getElementById(`filter-${type}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('text-academic-muted', 'dark:text-academic-darkMuted');
+                activeBtn.classList.add('bg-white', 'dark:bg-gray-700', 'shadow-sm', 'text-academic-accent', 'dark:text-sky-400');
+            }
+
+            items.forEach(item => {
+                if (type === 'all' || item.classList.contains(type)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Search Publications
+        function searchPubs() {
+            const query = document.getElementById('pubSearch').value.toLowerCase();
+            const items = document.querySelectorAll('.pub-item');
+
+            items.forEach(item => {
+                const title = item.getAttribute('data-title') || '';
+                const author = item.getAttribute('data-author') || '';
+                const text = item.innerText.toLowerCase();
+
+                if (title.includes(query) || author.includes(query) || text.includes(query)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
