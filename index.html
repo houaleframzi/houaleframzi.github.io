@@ -173,6 +173,19 @@
                     <p class="text-sm text-academic-text/90 dark:text-academic-darkText/90 mt-1.5 leading-relaxed">
                         <span class="font-semibold font-sans text-xs uppercase tracking-wider text-academic-muted dark:text-academic-darkMuted">Thesis Title:</span> Artificial intelligence for the optimization of electric vehicles autonomy and their integration into the smart grid.
                     </p>
+
+                    <!-- PhD Manuscript & Presentation Links -->
+                    <div class="mt-3 flex flex-wrap gap-2 font-sans text-xs no-print">
+                        <a href="https://theses.hal.science/tel-05768887" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-academic-accent text-white hover:bg-academic-accentHover transition-colors font-medium shadow-sm">
+                            <i class="fa-solid fa-file-pdf"></i> Access Ph.D. Manuscript (HAL)
+                        </a>
+                        <button onclick="toggleSlidesModal()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded border border-academic-border dark:border-academic-darkBorder hover:border-academic-accent dark:hover:border-sky-400 text-academic-text dark:text-academic-darkText transition-colors font-medium" title="Preview Defense Slides">
+                            <i class="fa-solid fa-file-powerpoint text-orange-500"></i> Preview Defense Slides (PPTX)
+                        </button>
+                        <a href="https://univbourgogne-my.sharepoint.com/:p:/g/personal/ahmed-ramzi_houalef_etu_ube_fr/IQBqsqH4pApJSLFPF4d1wo1iAbngkA5GgLZs1Ru2CW6mc1U?download=1" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded border border-academic-border dark:border-academic-darkBorder hover:border-academic-accent dark:hover:border-sky-400 text-academic-text dark:text-academic-darkText transition-colors font-medium" title="Download PPTX Presentation">
+                            <i class="fa-solid fa-download text-academic-accent dark:text-sky-400"></i> Download PPTX
+                        </a>
+                    </div>
                 </div>
 
                 <!-- Master's Degree -->
@@ -472,7 +485,7 @@
                             <span class="text-[10px] px-2 py-0.5 rounded bg-blue-100 dark:bg-blue-900/60 text-blue-800 dark:text-blue-200">Python</span>
                         </div>
                         <p class="text-xs text-academic-muted dark:text-academic-darkMuted mt-2 leading-relaxed">
-                            Double Deep Q-Network implementation for optimizing seamless handover decisions in high-speed 6G vehicular communication environments.
+                            Double Deep Q-Network implementation for optimizing seamless handover decisions in high-speed 6G vehicular communication environments (co-developed with Akram Houalef).
                         </p>
                     </a>
 
@@ -617,6 +630,29 @@
 
     </main>
 
+    <!-- Presentation Modal Viewer -->
+    <div id="slidesModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex flex-col justify-center items-center p-4 no-print">
+        <div class="bg-white dark:bg-academic-cardDark w-full max-w-4xl h-[85vh] rounded-xl overflow-hidden flex flex-col shadow-2xl border border-academic-border dark:border-academic-darkBorder">
+            <div class="p-3 bg-gray-100 dark:bg-gray-800 border-b border-academic-border dark:border-academic-darkBorder flex justify-between items-center font-sans">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-file-powerpoint text-orange-500 text-lg"></i>
+                    <span class="font-bold text-sm text-academic-text dark:text-academic-darkText">Ph.D. Defense Presentation Deck (Interactive Viewer)</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <a href="https://univbourgogne-my.sharepoint.com/:p:/g/personal/ahmed-ramzi_houalef_etu_ube_fr/IQBqsqH4pApJSLFPF4d1wo1iAbngkA5GgLZs1Ru2CW6mc1U?download=1" target="_blank" rel="noopener" class="px-3 py-1 rounded bg-academic-accent text-white hover:bg-academic-accentHover text-xs font-semibold transition-colors">
+                        <i class="fa-solid fa-download mr-1"></i> Download PPTX
+                    </a>
+                    <button onclick="toggleSlidesModal()" class="px-3 py-1 rounded bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-xs font-semibold text-academic-text dark:text-academic-darkText transition-colors">
+                        <i class="fa-solid fa-xmark mr-1"></i> Close
+                    </button>
+                </div>
+            </div>
+            <div class="flex-grow w-full bg-gray-900 relative">
+                <iframe id="slidesIframe" src="https://univbourgogne-my.sharepoint.com/personal/ahmed-ramzi_houalef_etu_ube_fr/_layouts/15/embed.aspx?UniqueId=f8a1b26a-0aa4-4849-b14f-178775c28d62" class="w-full h-full border-none" frameborder="0" scrolling="no" allowfullscreen title="PhD_Defense_Presentaion_final"></iframe>
+            </div>
+        </div>
+    </div>
+
     <footer class="border-t border-academic-border dark:border-academic-darkBorder py-6 font-sans text-xs text-center text-academic-muted dark:text-academic-darkMuted no-print">
         <div class="max-w-5xl mx-auto px-4">
             <p>© <span id="year"></span> AR Houalef</p>
@@ -626,6 +662,14 @@
     <!-- INTERACTIVE JAVASCRIPT -->
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Toggle PhD Slides Modal
+        function toggleSlidesModal() {
+            const modal = document.getElementById('slidesModal');
+            if (modal) {
+                modal.classList.toggle('hidden');
+            }
+        }
 
         // Dark Mode Toggle Logic
         function toggleDarkMode() {
